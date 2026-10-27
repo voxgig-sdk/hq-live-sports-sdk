@@ -1,0 +1,16 @@
+{
+  "files": [
+    "SUMMARY.md"
+  ],
+  "config": ".sdk/doc/qa/vale.ini",
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Authenticated multi-sport predictions and live sports intelligence from Intelligence HQ. API access licenses output only; the proprietary HQ Brain remains private.",
+      "Feature-specific HQ payload",
+      "HQ intelligence payload",
+      "Production",
+      "Server-side HQ key in the form `hq_live_`..."
+    ]
+  }
+}

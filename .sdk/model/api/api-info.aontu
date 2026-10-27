@@ -1,0 +1,28 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      description: "Authenticated multi-sport predictions and live sports intelligence from Intelligence HQ. API access licenses output only; the proprietary HQ Brain remains private."
+      security: {
+        in: "header"
+        name: "Authorization"
+        prefix: "Bearer"
+        scheme: "bearerAuth"
+        type: "http"
+      }
+      servers: [
+        {
+          description: "Production"
+          url: "https://intelligencehq.io"
+        }
+      ]
+      summary: "Authenticated multi-sport predictions and live sports intelligence from Intelligence HQ."
+      title: "Intelligence HQ Sports API"
+      version: "1.0.0"
+      website: "https://intelligencehq.io/developers"
+    }
+  }
+}
+

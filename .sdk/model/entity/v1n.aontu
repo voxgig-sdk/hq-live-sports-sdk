@@ -1,0 +1,144 @@
+# Entity: v1n
+
+main: kit: entity: v1n: {
+
+  alias: field: {}
+
+  fields: {
+    as_of: {
+      fo: "date-time"
+      h: "As Of"
+      n: "as_of"
+      r: true
+      t: "`$STRING`"
+    }
+    data: {
+      h: "Data"
+      n: "data"
+      r: true
+      sh: "Feature-specific HQ payload"
+      t: "`$ANY`"
+    }
+    feature: {
+      h: "Feature"
+      n: "feature"
+      r: true
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    ok: {
+      h: "Ok"
+      n: "ok"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    sport: {
+      h: "Sport"
+      n: "sport"
+      r: true
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    from: {
+      feature: "feature"
+      sport: "sport"
+    }
+    name: "id"
+    parts: [
+      "sport"
+      "feature"
+    ]
+    sep: "/"
+  }
+
+  name: "v1n"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/{sport}/{feature}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "feature"
+                or: "feature"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "sport"
+                or: "sport"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "league"
+                or: "league"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/{sport}/{feature}"
+          q: {
+            exist: [
+              "feature"
+              "sport"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              var: "sport"
+            }
+            {
+              var: "feature"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

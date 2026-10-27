@@ -1,0 +1,153 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Intelligence HQ Sports API",
+    "version": "1.0.0",
+    "description": "Authenticated multi-sport predictions and live sports intelligence from Intelligence HQ. API access licenses output only; the proprietary HQ Brain remains private."
+  },
+  "servers": [
+    {
+      "url": "https://intelligencehq.io",
+      "description": "Production"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/api/v1/{sport}/{feature}": {
+      "get": {
+        "summary": "Read HQ sports intelligence",
+        "operationId": "getHqSportsIntelligence",
+        "parameters": [
+          {
+            "name": "sport",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "football",
+                "basketball",
+                "baseball",
+                "fighting",
+                "tennis",
+                "golf",
+                "soccer",
+                "hockey",
+                "horse-racing"
+              ]
+            }
+          },
+          {
+            "name": "feature",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "predictions",
+                "vault",
+                "scores",
+                "standings",
+                "status",
+                "feed"
+              ]
+            }
+          },
+          {
+            "name": "league",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Optional league selector, for example nfl, cfb or nba."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "description": "Maximum rows for supported score feeds."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HQ intelligence payload",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HqResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing, invalid, inactive or expired API key"
+          },
+          "403": {
+            "description": "Sport or feature is outside the key entitlement"
+          },
+          "429": {
+            "description": "Monthly request limit reached"
+          },
+          "502": {
+            "description": "Sports upstream temporarily unavailable"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "HQ API Key",
+        "description": "Server-side HQ key in the form hq_live_..."
+      }
+    },
+    "schemas": {
+      "HqResponse": {
+        "type": "object",
+        "required": [
+          "ok",
+          "sport",
+          "feature",
+          "as_of",
+          "data"
+        ],
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "const": true
+          },
+          "sport": {
+            "type": "string"
+          },
+          "feature": {
+            "type": "string"
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "data": {
+            "description": "Feature-specific HQ payload"
+          }
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Intelligence HQ API documentation",
+    "url": "https://intelligencehq.io/developers"
+  }
+}

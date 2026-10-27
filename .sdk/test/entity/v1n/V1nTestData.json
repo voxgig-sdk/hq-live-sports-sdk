@@ -1,0 +1,48 @@
+{
+  "existing": {
+    "v1n": {
+      "V1N00": {
+        "as_of": "s3c",
+        "data": "s3d",
+        "feature": "s3e",
+        "id": "V1N00",
+        "ok": true,
+        "sport": "s41"
+      },
+      "V1N01": {
+        "as_of": "s78",
+        "data": "s79",
+        "feature": "s7a",
+        "id": "V1N01",
+        "ok": true,
+        "sport": "s7d"
+      },
+      "V1N02": {
+        "as_of": "sb4",
+        "data": "sb5",
+        "feature": "sb6",
+        "id": "V1N02",
+        "ok": true,
+        "sport": "sb9"
+      }
+    }
+  },
+  "new": {
+    "v1n": {
+      "v1n_ref01": {
+        "as_of": "sf0",
+        "data": "sf1",
+        "feature": "sf2",
+        "ok": true,
+        "sport": "sf5"
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/{sport}/{feature}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}
